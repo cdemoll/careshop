@@ -19,7 +19,7 @@ class Db {
   }
 
   selectByEmail(email, callback) {
-    return this.db.get(`SELECT * FROM user WHERE email = ?`, [email], function(
+    return this.db.get(`SELECT * FROM user WHERE email = ?`, [email], function (
       err,
       row
     ) {
@@ -38,7 +38,7 @@ class Db {
   }
 
   selectAll(callback) {
-    return this.db.all(`SELECT * FROM user`, function(err, rows) {
+    return this.db.all(`SELECT * FROM user`, function (err, rows) {
       callback(err, rows);
     });
   }

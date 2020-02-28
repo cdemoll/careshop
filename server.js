@@ -1,7 +1,7 @@
 "use strict";
 const express = require("express");
 const DB = require("./db");
-const config = require("./config");
+const config = require("./config/dev.env");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // CORS middleware
-const allowCrossDomain = function(req, res, next) {
+const allowCrossDomain = function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "*");
   res.header("Access-Control-Allow-Headers", "*");
@@ -25,10 +25,10 @@ const allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
-router.post("/register", function(req, res) {
+router.post("/register", function (req, res) {
   db.insert(
     [req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 8)],
-    function(err) {
+    function (err) {
       if (err)
         return res
           .status(500)
@@ -45,10 +45,10 @@ router.post("/register", function(req, res) {
   );
 });
 
-router.post("/register-admin", function(req, res) {
+router.post("/register-admin", function (req, res) {
   db.insertAdmin(
     [req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 8), 1],
-    function(err) {
+    function (err) {
       if (err)
         return res
           .status(500)
@@ -80,6 +80,6 @@ router.post("/login", (req, res) => {
 });
 app.use(router);
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`Backend express server running on localhost:${PORT}`);
 });
