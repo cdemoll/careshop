@@ -1,17 +1,19 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link
-        v-if="authenticated"
-        to="/login"
-        v-on:click.native="logout()"
-        replace
-        >Logout</router-link
-      >
+  <v-app>
+    <div id="app">
+      <div id="nav">
+        <router-link
+          v-if="authenticated"
+          to="/login"
+          v-on:click.native="logout()"
+          replace
+          >Logout</router-link
+        >
+      </div>
+      <img src="./assets/logo-car.png" />
+      <router-view />
     </div>
-    <img src="./assets/logo-car.png" />
-    <router-view />
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -50,5 +52,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: #e3e3e3;
 }
 </style>
