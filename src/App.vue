@@ -1,17 +1,26 @@
 <template>
-  <v-app id="inspire">
-    <div id="site">
-      <!-- <NavBar /> -->
-      <v-content>
-        <img src="./assets/logo-car.png" />
-        <router-view />
-      </v-content>
+  <v-app>
+    <div id="app">
+      <div id="nav">
+        <Navigation></Navigation>
+        <router-link
+          v-if="authenticated"
+          to="/login"
+          v-on:click.native="logout()"
+          replace
+          >Logout</router-link
+        >
+      </div>
+      <img src="./assets/logo-car.png" />
+      <router-view />
     </div>
   </v-app>
 </template>
 
 <script>
-//import NavBar from "./components/NavBar";
+
+import Navigation from "./components/Navigation";
+
 
 export default {
   name: "App",
@@ -25,6 +34,12 @@ export default {
       }
     };
   },
+
+components: {
+
+  Navigation:Navigation
+},
+
   mounted() {
     if(!this.authenticated) {
       this.$router.push({ name: "login", query: {redirect: '/login'} });
