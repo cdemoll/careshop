@@ -46,11 +46,11 @@ let router = new Router({
       meta: {
         requiresAuth: true,
         is_admin: true
-      },
+      }
     },
     {
-      path: '*',
-      redirect: '/login'
+      path: "*",
+      redirect: "/login"
     }
   ]
 });
