@@ -18,10 +18,13 @@
 </template>
 
 <script>
+
 import Navigation from "./components/Navigation";
+
 
 export default {
   name: "App",
+  components: {},
   data() {
     return {
       authenticated: false,
@@ -38,9 +41,9 @@ components: {
 },
 
   mounted() {
-    /* if (!this.authenticated) {
-      this.$router.replace({ name: "login" });
-    }*/
+    if(!this.authenticated) {
+      this.$router.push({ name: "login", query: {redirect: '/login'} });
+    }
   },
   methods: {
     /*  setAuthenticated(status) {
@@ -54,13 +57,12 @@ components: {
 </script>
 
 <style>
-#app {
+#site {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   background-color: #e3e3e3;
 }
 </style>

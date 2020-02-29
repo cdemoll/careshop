@@ -47,6 +47,10 @@ let router = new Router({
         requiresAuth: true,
         is_admin: true
       }
+    },
+    {
+      path: "*",
+      redirect: "/login"
     }
   ]
 });

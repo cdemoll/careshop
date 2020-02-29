@@ -5,8 +5,59 @@ class Db {
   constructor(file) {
     this.db = new sqlite3.Database(file);
     this.createTable();
+    this.createCarTable();
   }
 
+  //TABLE CONTAINING CAR DATA
+  createCarTable() {
+    const sql = `CREATE TABLE IF NOT EXISTS car (
+        id integer PRIMARY KEY,
+        contructor text,
+        model text,
+        year text)`;
+    return this.db.run(sql);
+  }
+
+  selectByBrand(brand, callback) {
+    return this.db.get(`SELECT * FROM car WHERE brand = ?`, [brand], function(
+      err,
+      row
+    ) {
+      callback(err, row);
+    });
+  }
+
+  selectAll(callback) {
+    return this.db.all(`SELECT * FROM car`, function(err, rows) {
+      callback(err, rows);
+    });
+  }
+
+  updateCar(car, callback) {
+    return this.db.run(
+      `UPDATE car SET  
+        constructor = ?,
+        model = ?,
+        year = ?
+        WHERE id = ?`,
+      [car.constructor, car.model, car.year, car.id],
+      err => {
+        callback(err);
+      }
+    );
+  }
+
+  insertCar(car, callback) {
+    return this.db.run(
+      "INSERT INTO car (id,constructor,model,year) VALUES (?,?,?,?)",
+      car,
+      err => {
+        callback(err);
+      }
+    );
+  }
+
+  //TABLE CONTAINING USER DATA
   createTable() {
     const sql = `
             CREATE TABLE IF NOT EXISTS user (
@@ -19,7 +70,7 @@ class Db {
   }
 
   selectByEmail(email, callback) {
-    return this.db.get(`SELECT * FROM user WHERE email = ?`, [email], function (
+    return this.db.get(`SELECT * FROM user WHERE email = ?`, [email], function(
       err,
       row
     ) {
@@ -38,7 +89,7 @@ class Db {
   }
 
   selectAll(callback) {
-    return this.db.all(`SELECT * FROM user`, function (err, rows) {
+    return this.db.all(`SELECT * FROM user`, function(err, rows) {
       callback(err, rows);
     });
   }
