@@ -2,6 +2,7 @@
   <v-app>
     <div id="app">
       <div id="nav">
+        <Navigation></Navigation>
         <router-link
           v-if="authenticated"
           to="/login"
@@ -17,6 +18,8 @@
 </template>
 
 <script>
+import Navigation from "./components/Navigation";
+
 export default {
   name: "App",
   data() {
@@ -28,6 +31,12 @@ export default {
       }
     };
   },
+
+components: {
+
+  Navigation:Navigation
+},
+
   mounted() {
     /* if (!this.authenticated) {
       this.$router.replace({ name: "login" });
