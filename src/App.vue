@@ -26,9 +26,9 @@ export default {
     };
   },
   mounted() {
-    /* if (!this.authenticated) {
-      this.$router.replace({ name: "login" });
-    }*/
+    if(!this.authenticated) {
+      this.$router.push({ name: "login", query: {redirect: '/login'} });
+    }
   },
   methods: {
     /*  setAuthenticated(status) {
