@@ -1,24 +1,21 @@
 <template>
-  <v-app>
-    <div id="app">
-      <div id="nav">
-        <router-link
-          v-if="authenticated"
-          to="/login"
-          v-on:click.native="logout()"
-          replace
-          >Logout</router-link
-        >
-      </div>
-      <img src="./assets/logo-car.png" />
-      <router-view />
+  <v-app id="inspire">
+    <div id="site">
+      <!-- <NavBar /> -->
+      <v-content>
+        <img src="./assets/logo-car.png" />
+        <router-view />
+      </v-content>
     </div>
   </v-app>
 </template>
 
 <script>
+//import NavBar from "./components/NavBar";
+
 export default {
   name: "App",
+  components: {},
   data() {
     return {
       authenticated: false,
@@ -45,13 +42,12 @@ export default {
 </script>
 
 <style>
-#app {
+#site {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   background-color: #e3e3e3;
 }
 </style>
