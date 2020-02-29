@@ -1,102 +1,23 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <h1>This is homepage</h1>
+    <h2>{{ msg }}</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Careshop'
-    }
+      msg: "Hello World!"
+    };
   }
-}
+};
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
@@ -111,3 +32,69 @@ a {
   color: #42b983;
 }
 </style>
+Create a new file Login.vue in the same directory and add the following:
+
+<template>
+  <div>
+    <h4>Login</h4>
+    <form>
+      <label for="email">E-Mail Address</label>
+      <div>
+        <input id="email" type="email" v-model="email" required autofocus />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <div>
+          <input id="password" type="password" v-model="password" required />
+        </div>
+      </div>
+      <div>
+        <button type="submit" @click="handleSubmit">Login</button>
+      </div>
+    </form>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      if (this.password.length > 0) {
+        this.$http
+          .post("http://localhost:3000/login", {
+            email: this.email,
+            password: this.password
+          })
+          .then(response => {
+            let is_admin = response.data.user.is_admin;
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+            localStorage.setItem("jwt", response.data.token);
+
+            if (localStorage.getItem("jwt") != null) {
+              this.$emit("loggedIn");
+              if (this.$route.params.nextUrl != null) {
+                this.$router.push(this.$route.params.nextUrl);
+              } else {
+                if (is_admin == 1) {
+                  this.$router.push("admin");
+                } else {
+                  this.$router.push("dashboard");
+                }
+              }
+            }
+          })
+          .catch(function(error) {
+            console.error(error.response);
+          });
+      }
+    }
+  }
+};
+</script>
