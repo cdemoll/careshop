@@ -1,24 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Logout</router-link>
+  <v-app id="inspire">
+    <div id="site">
+      <!-- <NavBar /> -->
+      <v-content>
+        <img src="./assets/logo-car.png" />
+        <router-view />
+      </v-content>
     </div>
-    <img src="./assets/logo-car.png">
-    <router-view @authenticated="setAuthenticated" />
-  </div>
+  </v-app>
 </template>
 
 <script>
+//import NavBar from "./components/NavBar";
+
 export default {
-  name: 'App',
+  name: "App",
+  components: {},
   data() {
     return {
       authenticated: false,
       devAccount: {
         username: "test",
         password: "test"
-    }
-    }
+      }
+    };
   },
   mounted() {
     if(!this.authenticated) {
@@ -26,23 +31,23 @@ export default {
     }
   },
   methods: {
-    setAuthenticated(status) {
+    /*  setAuthenticated(status) {
       this.authenticated = status;
-    },
+    },*/
     logout() {
       this.authenticated = false;
     }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+#site {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background-color: #e3e3e3;
 }
 </style>
