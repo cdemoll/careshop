@@ -40,15 +40,7 @@ let router = new Router({
       }
     },
     {
-<<<<<<< HEAD
-      path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard
-    },
-    {
-      path: '*',
-      redirect: '/login'
-=======
+
       path: "/admin",
       name: "admin",
       component: Admin,
@@ -56,7 +48,7 @@ let router = new Router({
         requiresAuth: true,
         is_admin: true
       }
->>>>>>> Goulou2
+
     }
   ]
 });
