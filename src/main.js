@@ -4,7 +4,6 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router/index.js";
 import Axios from "axios";
-import Vue from "vue";
 import Vuetify from "vuetify";
 
 Vue.use(Vuetify);
