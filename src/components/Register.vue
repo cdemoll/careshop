@@ -64,8 +64,8 @@ export default {
         this.password === this.password_confirmation &&
         this.password.length > 0
       ) {
-        let url = "http://localhost:3000/register";
-        if (this.is_admin == 1) url = "http://localhost:3000/register-admin";
+        let url = "/register";
+        if (this.is_admin == 1) url = "/register-admin";
         this.$http
           .post(url, {
             name: this.name,

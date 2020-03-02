@@ -23,6 +23,9 @@ const allowCrossDomain = function(req, res, next) {
   next();
 };
 
+const path = require("path");
+app.use(express.static(path.join(__dirname, "dist/")));
+
 app.use(allowCrossDomain);
 
 router.post("/register", function(req, res) {

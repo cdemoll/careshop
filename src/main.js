@@ -6,7 +6,7 @@ import "vuetify/dist/vuetify.min.css";
 import App from "./App";
 import router from "./router/index.js";
 import Axios from "axios";
-
+require = "../server.js";
 
 Vue.prototype.$http = Axios;
 Vue.use(Vuetify);
