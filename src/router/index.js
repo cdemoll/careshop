@@ -67,7 +67,6 @@ router.beforeEach((to, from, next) => {
           next();
         }
       } else {
-        console.log("1");
         next();
       }
     }
@@ -75,7 +74,6 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem("jwt") == null) {
       next();
     } else {
-      console.log("A");
       next();
     }
   } else {
