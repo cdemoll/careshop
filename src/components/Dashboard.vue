@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import router from "../router/index";
 export default {
   data() {
     return {
@@ -17,7 +18,7 @@ export default {
     logout: function() {
       this.authenticated = false;
       localStorage.clear();
-      window.location.reload();
+      this.$router.push("/login");
     }
   }
 };
