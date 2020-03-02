@@ -18,9 +18,7 @@
 </template>
 
 <script>
-
 import Navigation from "./components/Navigation";
-
 
 export default {
   name: "App",
@@ -34,10 +32,9 @@ export default {
     };
   },
 
-components: {
-
-  Navigation:Navigation
-},
+  components: {
+    Navigation: Navigation
+  },
 
   mounted() {
     /* if (!this.authenticated) {
@@ -62,7 +59,6 @@ components: {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   background-color: #e3e3e3;
 }
 </style>
