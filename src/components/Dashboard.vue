@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
     <h1>Welcome to regular users page</h1>
-    <h2>{{msg}}</h2>
+    <h2>{{ msg }}</h2>
+    <v-btn color="error" @click="logout()">Logout </v-btn>
   </div>
 </template>
 
@@ -11,6 +12,13 @@ export default {
     return {
       msg: "The commoners"
     };
+  },
+  methods: {
+    logout() {
+      this.authenticated = false;
+      localStorage.clear();
+      window.location.reload();
+    }
   }
 };
 </script>
