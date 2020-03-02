@@ -3,6 +3,7 @@
     <div id="site">
       <!-- <NavBar /> -->
       <v-content>
+        <v-btn @click="logout()">Logout</v-btn>
         <img src="./assets/logo-car.png" />
         <router-view />
       </v-content>
@@ -26,16 +27,14 @@ export default {
     };
   },
   mounted() {
-    if(!this.authenticated) {
-      this.$router.push({ name: "login", query: {redirect: '/login'} });
+    if (!this.authenticated) {
+      this.$router.push({ name: "login", query: { redirect: "/login" } });
     }
   },
   methods: {
-    /*  setAuthenticated(status) {
-      this.authenticated = status;
-    },*/
     logout() {
       this.authenticated = false;
+      window.location.reload();
     }
   }
 };

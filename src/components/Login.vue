@@ -13,11 +13,10 @@
         </div>
       </div>
       <div>
-        <button type="submit" @click="handleSubmit">
-          Login
-        </button>
+        <button type="submit" @click="handleSubmit">Login</button>
       </div>
     </form>
+    <v-btn v-if="authenticated" to="/login" @click="logout()">Logout</v-btn>
   </div>
 </template>
 

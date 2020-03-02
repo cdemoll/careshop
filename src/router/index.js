@@ -4,7 +4,6 @@ import Login from "@/components/Login";
 import Register from "@/components/Register";
 import UserBoard from "@/components/Dashboard";
 import Admin from "@/components/Admin";
-import HelloWorld from "@/components/HelloWorld";
 
 Vue.use(Router);
 let router = new Router({
@@ -12,8 +11,8 @@ let router = new Router({
   routes: [
     {
       path: "/",
-      name: "HelloWorld",
-      component: HelloWorld
+      name: "login",
+      component: Login
     },
     {
       path: "/login",
@@ -58,6 +57,7 @@ let router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (localStorage.getItem("jwt") == null) {
+      console.log(to.path);
       next({
         path: "/login",
         params: { nextUrl: to.fullPath }
@@ -68,7 +68,7 @@ router.beforeEach((to, from, next) => {
         if (user.is_admin == 1) {
           next();
         } else {
-          next({ name: "userboard" });
+          next();
         }
       } else {
         next();
@@ -78,7 +78,7 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem("jwt") == null) {
       next();
     } else {
-      next({ name: "userboard" });
+      next({});
     }
   } else {
     next();
