@@ -18,7 +18,7 @@ export default {
     logout: function() {
       this.authenticated = false;
       localStorage.clear();
-      this.$router.push("/login");
+      this.router.push("/login");
     }
   }
 };
