@@ -64,9 +64,10 @@ router.beforeEach((to, from, next) => {
         if (user.is_admin == 1) {
           next();
         } else {
-          next({ name: "userboard" });
+          next();
         }
       } else {
+        console.log("1");
         next();
       }
     }
@@ -74,7 +75,8 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem("jwt") == null) {
       next();
     } else {
-      next({ name: "userboard" });
+      console.log("A");
+      next();
     }
   } else {
     next();
