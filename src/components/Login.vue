@@ -1,8 +1,7 @@
-
 <template>
   <div id="login">
     <h1>Login</h1>
-    <form>
+    <v-form>
       <label for="email">E-Mail Address</label>
       <div>
         <input id="email" type="email" v-model="email" required autofocus />
@@ -14,13 +13,13 @@
         </div>
       </div>
       <div>
-        <button type="submit" @click="handleSubmit">Login</button>
+        <v-btn color="primary" type="submit" @click="handleSubmit">
+          Login
+        </v-btn>
       </div>
-    </form>
-    <v-btn v-if="authenticated" to="/login" @click="logout()">Logout</v-btn>
+    </v-form>
   </div>
 </template>
-
 
 <script>
 export default {

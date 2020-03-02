@@ -3,13 +3,6 @@
     <div id="app">
       <div id="nav">
         <Navigation></Navigation>
-        <router-link
-          v-if="authenticated"
-          to="/login"
-          v-on:click.native="logout()"
-          replace
-          >Logout</router-link
-        >
       </div>
       <img src="./assets/logo-car.png" />
       <router-view />
@@ -41,14 +34,7 @@ export default {
       this.$router.replace({ name: "login" });
     }*/
   },
-  methods: {
-    /*  setAuthenticated(status) {
-      this.authenticated = status;
-    },*/
-    logout() {
-      this.authenticated = false;
-    }
-  }
+  methods: {}
 };
 </script>
 

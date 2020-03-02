@@ -12,8 +12,8 @@ let router = new Router({
   routes: [
     {
       path: "/",
-      name: "HelloWorld",
-      component: HelloWorld
+      name: "login",
+      component: Login
     },
     {
       path: "/login",
@@ -40,7 +40,6 @@ let router = new Router({
       }
     },
     {
-
       path: "/admin",
       name: "admin",
       component: Admin,
@@ -48,7 +47,6 @@ let router = new Router({
         requiresAuth: true,
         is_admin: true
       }
-
     }
   ]
 });

@@ -36,12 +36,13 @@
       </div>
 
       <div>
-        <button type="submit" @click="handleSubmit">Register</button>
+        <v-btn color="primary" type="submit" @click="handleSubmit">
+          Register
+        </v-btn>
       </div>
     </form>
   </div>
 </template>
-
 
 <script>
 export default {
